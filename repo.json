@@ -1,0 +1,15 @@
+[{
+  "Name": "palettero",
+  "Description": "Command palette Ctrl-P - fuzzy search commands and textfilters",
+  "Website": "https://terokarvinen.com/tags/micro-editor/",
+  "Tags": ["command palette", "fzf", "menu"],
+  "Versions": [
+    {
+      "Version": "0.0.2",
+      "Url": "https://github.com/terokarvinen/palettero/archive/v0.0.2.zip",
+      "Require": {
+        "micro": ">=2.0.0"
+      }
+    }
+  ]
+}]
