@@ -39,7 +39,7 @@ function paletteroCommand(bp)
 	-- ctrl-E palettero
 	micro.InfoBar():Message("Palettero command palette activated!")
 
-n	local showMenuCmd = string.format("bash -c \"cat '%s' '%s'|fzf --layout=reverse\"", menufile, userfile)
+	local showMenuCmd = string.format("bash -c \"cat '%s' '%s'|fzf --layout=reverse\"", menufile, userfile)
 	micro.Log("Requesting user input with: ", showMenuCmd) -- run 'micro --debug tero' to create log.txt
 	local choice = shell.RunInteractiveShell(showMenuCmd, false, true)
 	micro.Log("User chose: ", choice)
