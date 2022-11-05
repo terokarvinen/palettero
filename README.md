@@ -16,14 +16,11 @@ Tab completes file names in some commands, such as "tab" and "open".
 
 # Requirements
 
-Requires: fzf and bash
+Requires fzf and bash, optionally pythonpy for extra features. 
 
 	$ sudo apt-get update
 	$ sudo apt-get -y install fzf
-
-Optional extra features benefit from other packages
-
-	$ sudo apt-get -y install pythonpy
+	$ sudo apt-get -y install pythonpy # optional
 
 Only tested on Linux. 
 
