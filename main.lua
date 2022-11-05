@@ -12,6 +12,11 @@ function init()
 	-- runs once when micro starts
 	config.MakeCommand("palettero", paletteroCommand, config.NoComplete)
 	config.TryBindKey("CtrlP", "command:palettero", false)
+	config.TryBindKey("CtrlSpace", "command:palettero", false)
+	config.TryBindKey("F1", "command:palettero", false)
+	
+	config.MakeCommand("editmenu", editmenuCommand, config.NoComplete)
+	
 	shell.ExecCommand("touch", userfile)
 end
 
@@ -52,6 +57,10 @@ function paletteroCommand(bp)
 	micro.InfoBar():Message("Running: ", cmd)
 	-- bp:HandleCommand(cmd)
 	commandBar(cmd)
+end
+
+function editmenuCommand(bp)
+	bp:HandleCommand("tab "..userfile)
 end
 
 -- ## Menu item collection ##
