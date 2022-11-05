@@ -8,7 +8,7 @@ The first and original command paletter for Micro.
 
 # Usage
 
-Press **Ctrl-P** to open Palettero. Type to fuzzy search commands and their descriptions. Use up and down arrows to move. Press enter to select, or Esc to cancel. 
+Press **Ctrl-P** or **Ctrl-Space** to open Palettero. Type to fuzzy search commands and their descriptions. Use up and down arrows to move. Press enter to select, or Esc to cancel. 
 
 Command is pre-filled to command bar. Edit the command, then press enter to execute. 
 
@@ -37,7 +37,9 @@ Currently, there is just development install
 
 # Adding your own commands
 
-You can add your own commands to $HOME/.config/micro/palettero.cfg
+You can add your own menu entries with 'editmenu' command. 
+
+Your commands will be saved to $HOME/.config/micro/palettero.cfg
 
 # Adminstrivia
 
