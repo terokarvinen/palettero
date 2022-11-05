@@ -13,7 +13,7 @@ function init()
 	config.MakeCommand("palettero", paletteroCommand, config.NoComplete)
 	config.TryBindKey("CtrlP", "command:palettero", false)
 	config.TryBindKey("CtrlSpace", "command:palettero", false)
-	config.TryBindKey("F1", "command:palettero", false)
+	-- config.TryBindKey("F1", "command:palettero", false)
 	
 	config.MakeCommand("editmenu", editmenuCommand, config.NoComplete)
 	
