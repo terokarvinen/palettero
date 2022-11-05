@@ -16,9 +16,27 @@ Tab completes file names in some commands, such as "tab" and "open".
 
 # Requirements
 
-Requires: fzf, bash
+Requires: fzf and bash
+
+	$ sudo apt-get update
+	$ sudo apt-get -y install fzf
+
+Optional extra features benefit from other packages
+
+	$ sudo apt-get -y install pythonpy
 
 Only tested on Linux. 
+
+# Installation
+
+In the future, you will be able to install Palettero by 
+
+	$ micro --plugin install palettero
+
+Currently, there is just development install
+
+	$ cd $HOME/.config/micro/plug/
+	$ git clone https://github.com/terokarvinen/palettero
 
 # Adding your own commands
 
