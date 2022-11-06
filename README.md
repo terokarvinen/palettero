@@ -8,11 +8,31 @@ The first and original command paletter for Micro.
 
 # Usage
 
-Press **Ctrl-P** or **Ctrl-Space** to open Palettero. Type to fuzzy search commands and their descriptions. Use up and down arrows to move. Press enter to select, or Esc to cancel. 
+Press **Ctrl-P** or **Ctrl-Space** to open Palettero. Type to fuzzy search commands and their descriptions. Use up and down arrows to move. Press enter to select, Press Esc to cancel. 
 
 Command is pre-filled to command bar. Edit the command, then press enter to execute. 
 
 Tab completes file names in some commands, such as "tab" and "open". 
+
+To select an item immediately without editing, press double enter. 
+
+## Advanced Usage
+
+You can add your own menu items with ctrl-E "editmenu".
+
+Update the list of available help files and colorschemes (themes) with ctrl-E "updatemenu". Update is automatically ran once when you install Palettero. 
+
+# Features
+
+Palettero command palette includes
+
+- All built-in commands in Micro
+- All built-in help documents in Micro
+- Many ready made textfilters to automatically modify your selection
+	- Split to lines by comma, base64, rot13, remove empty lines, urldecode, hard wrap, squeeze white space...
+- Detects installed colorschemes and help files 
+- Write your own presets with 'editmenu' command
+	- Use Python one-liners with pythonpy (automatic import, perform an action on every line)
 
 # Requirements
 
