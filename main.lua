@@ -27,7 +27,7 @@ function init()
 		collectRuntime()
 	end
 
-	if not pathExists(collectedfile) then
+	if not pathExists(userfile) then
 		shell.ExecCommand("touch", userfile)
 	end
 end
