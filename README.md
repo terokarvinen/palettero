@@ -32,6 +32,7 @@ Palettero command palette includes
 	- Split to lines by comma, base64, rot13, remove empty lines, urldecode, hard wrap, squeeze white space...
 - Detects installed colorschemes and help files 
 - Write your own presets with 'editmenu' command
+	- Use any script or command to fully integrate your existing environment
 	- Use Python one-liners with pythonpy (automatic import, perform an action on every line)
 
 # Requirements
