@@ -5,8 +5,12 @@
 local micro = import("micro")
 local config = import("micro/config")
 local shell = import("micro/shell")
+local os = import("os") -- Go library
+local ioutil = import("io/ioutil") -- Go library
+local strings = import("strings") -- Go library
 local menufile = config.ConfigDir.."/plug/palettero/palettero-defaults.cfg"
 local userfile = config.ConfigDir.."/palettero.cfg"
+local collectedfile = config.ConfigDir.."/plug/palettero/palettero-collected.cfg"
 
 function init()
 	-- runs once when micro starts
@@ -16,8 +20,16 @@ function init()
 	-- config.TryBindKey("F1", "command:palettero", false)
 	
 	config.MakeCommand("editmenu", editmenuCommand, config.NoComplete)
-	
-	shell.ExecCommand("touch", userfile)
+	config.MakeCommand("updatemenu", collectRuntime, config.NoComplete)
+
+	if not pathExists(collectedfile) then
+		micro.InfoBar():Message("First run, Palettero running 'updatemenu'...")
+		collectRuntime()
+	end
+
+	if not pathExists(collectedfile) then
+		shell.ExecCommand("touch", userfile)
+	end
 end
 
 -- ## Prompt ##
@@ -44,7 +56,7 @@ function paletteroCommand(bp)
 	-- ctrl-E palettero
 	micro.InfoBar():Message("Palettero command palette activated!")
 
-	local showMenuCmd = string.format("bash -c \"cat '%s' '%s'|fzf --layout=reverse\"", menufile, userfile)
+	local showMenuCmd = string.format("bash -c \"cat '%s' '%s' '%s'|fzf --layout=reverse\"", userfile, menufile, collectedfile)
 	micro.Log("Requesting user input with: ", showMenuCmd) -- run 'micro --debug tero' to create log.txt
 	local choice = shell.RunInteractiveShell(showMenuCmd, false, true)
 	micro.Log("User chose: ", choice)
@@ -86,4 +98,42 @@ function getCommand(s)
 	end
 
 	return s -- no comment char in string	
+end
+
+function collectRuntime()
+	-- collect Runtime items to collectedfile
+	help = rtNames(config.RTHelp, "help")
+	colorscheme = rtNames(config.RTColorscheme, "set colorscheme")
+	data = help.."\n"..colorscheme
+	-- Go (Golang) io.ioutil.WriteFile() is depraced, os.WriteFile() is recommended, 
+	-- but the newer one is not in micro 2.0.11 as of 2022
+	local perms = tonumber("0600", 8)
+	local err = ioutil.WriteFile(collectedfile, help.."\n"..colorscheme, perms)
+end
+
+function rtNames(rtType, command)
+	-- return a string with all rtType items, one item per line
+	-- rtType should be one of 
+	-- 0 config.RTColorscheme, 1 config.RTSyntax, 2 config.RTHelp, 3 config.RTPlugin, 4 config.RTSyntaxHeader
+	-- add command at the start of each line, e.g. "plugins" -> "help plugins"
+	-- a helper function for collectRuntime
+	micro.Log(rtType, command)
+	local goStyleItems = config.ListRuntimeFiles(rtType) -- returns Go type (not string, not Lua table)
+	micro.Log("goStyleItems", goStyleItems)
+	local itemsOnOneLine = strings.Join(goStyleItems, " ") -- go strings.Join(), returns one line Lua string
+	multiLine = string.gsub(itemsOnOneLine, " ", "\n") -- convert to one word per line
+
+	-- add "command " to start of each line
+	multiLine = string.gsub(multiLine, "^", command.." ")
+	multiLine = string.gsub(multiLine, "\n", "\n"..command.." ")
+	
+	return multiLine
+end
+
+-- ## Generic Helper Functions ##
+
+function pathExists(path)
+	-- return true if path (file or directory) exists
+	local _, err = os.Stat(path)
+	return err == nil
 end
