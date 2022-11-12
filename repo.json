@@ -6,7 +6,7 @@
   "Versions": [
     {
       "Version": "0.0.5",
-      "Url": "https://github.com/terokarvinen/palettero/archive/v0.0.5.zip",
+      "Url": "https://github.com/terokarvinen/palettero/archive/0.0.5.zip",
       "Require": {
         "micro": ">=2.0.0"
       }
