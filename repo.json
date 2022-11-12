@@ -5,6 +5,13 @@
   "Tags": ["command palette", "fzf", "menu"],
   "Versions": [
     {
+      "Version": "0.0.5",
+      "Url": "https://github.com/terokarvinen/palettero/archive/v0.0.5.zip",
+      "Require": {
+        "micro": ">=2.0.0"
+      }
+    },
+    {
       "Version": "0.0.4",
       "Url": "https://github.com/terokarvinen/palettero/archive/v0.0.4.zip",
       "Require": {
