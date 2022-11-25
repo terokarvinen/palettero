@@ -29,7 +29,7 @@ Palettero command palette includes
 - All built-in commands in Micro
 - All built-in help documents in Micro
 - Many ready made textfilters to automatically modify your selection
-	- Split to lines by comma, base64, rot13, remove empty lines, urldecode, hard wrap, squeeze white space...
+	- Split to lines by comma, base64, rot13, remove empty lines, urldecode, hard wrap, squeeze white space, extract email addresses, extract URLs...
 - Detects installed colorschemes and help files 
 - Write your own presets with 'editmenu' command
 	- Use any script or command to fully integrate your existing environment
