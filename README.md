@@ -8,7 +8,7 @@ The first and original command paletter for Micro.
 
 # Usage
 
-Press **Ctrl-P** or **Ctrl-Space** to open Palettero. Type to fuzzy search commands and their descriptions. Use up and down arrows to move. Press enter to select, Press Esc to cancel. 
+Press **Ctrl-Space** or Alt-Ctrl-Space to open Palettero. Type to fuzzy search commands and their descriptions. Use up and down arrows to move. Press enter to select, Press Esc to cancel. 
 
 Command is pre-filled to command bar. Edit the command, then press enter to execute. 
 
