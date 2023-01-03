@@ -15,7 +15,7 @@ local collectedfile = config.ConfigDir.."/plug/palettero/palettero-collected.cfg
 function init()
 	-- runs once when micro starts
 	config.MakeCommand("palettero", paletteroCommand, config.NoComplete)
-	config.TryBindKey("CtrlP", "command:palettero", false)
+	config.TryBindKey("AltCtrlSpace", "command:palettero", false)
 	config.TryBindKey("CtrlSpace", "command:palettero", false)
 	-- config.TryBindKey("F1", "command:palettero", false)
 	
