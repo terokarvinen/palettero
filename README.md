@@ -34,6 +34,7 @@ Palettero command palette includes
 - Write your own presets with 'editmenu' command
 	- Use any script or command to fully integrate your existing environment
 	- Use Python one-liners with pythonpy (automatic import, perform an action on every line)
+- Integration with other plugins through the `$HOME/.config/micro/plug/*/palettero.cfg` file
 
 # Requirements
 

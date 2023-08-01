@@ -7,6 +7,7 @@ local config = import("micro/config")
 local shell = import("micro/shell")
 local os = import("os") -- Go library
 local ioutil = import("io/ioutil") -- Go library
+local filepath = import("path/filepath") -- Go library
 local strings = import("strings") -- Go library
 local menufile = config.ConfigDir.."/plug/palettero/palettero-defaults.cfg"
 local userfile = config.ConfigDir.."/palettero.cfg"
@@ -45,18 +46,43 @@ function promptDoneCallback(resp, cancelled)
 		micro.InfoBar():Message("Command cancelled.")
 	end
 	micro.InfoBar():Message("Running: ", resp)
-	
+
 	local bp = micro.CurPane()
 	bp:HandleCommand(resp)
 end
 
 -- ## commands ##
 
+function getFiles()
+	local files = {userfile, menufile}
+
+	local plugs, _ = filepath.Glob(config.ConfigDir.."/plug/*/palettero.cfg")
+	for idx = 1, #plugs do
+		table.insert(files, plugs[idx])
+	end
+	table.insert(files, collectedfile)
+
+	micro.Log("Palletero files: ", files)
+	return files
+end
+
+function cat()
+	local cmd = 'cat'
+
+	local files = getFiles()
+	for idx = 1, #files do
+		cmd = cmd..(" '%s' "):format(files[idx])
+	end
+
+	micro.Log("Palletero cat: ", cmd)
+	return cmd
+end
+
 function paletteroCommand(bp)
 	-- ctrl-E palettero
 	micro.InfoBar():Message("Palettero command palette activated!")
 
-	local showMenuCmd = string.format("bash -c \"cat '%s' '%s' '%s'|fzf --layout=reverse\"", userfile, menufile, collectedfile)
+	local showMenuCmd = string.format("bash -c \"%s|fzf --layout=reverse\"", cat())
 	micro.Log("Requesting user input with: ", showMenuCmd) -- run 'micro --debug tero' to create log.txt
 	local choice = shell.RunInteractiveShell(showMenuCmd, false, true)
 	micro.Log("User chose: ", choice)
