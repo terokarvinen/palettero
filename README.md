@@ -53,7 +53,7 @@ In the future, you will be able to install Palettero by
 
 Currently, there is just development install
 
-	git clone https://github.com/terokarvinen/palettero $HOME/.config/micro/plug/
+	git clone https://github.com/terokarvinen/palettero $HOME/.config/micro/plug/palettero
 
 # Adding your own commands
 
