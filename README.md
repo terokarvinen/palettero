@@ -55,6 +55,13 @@ Currently, there is just development install
 
 	$ cd $HOME/.config/micro/plug/
 	$ git clone https://github.com/terokarvinen/palettero
+ 
+## Tmux support 
+To allow shift-up, ctrl-right in micro, run:
+
+```
+echo "export TERM=tmux-256color">> .bashrc
+```
 
 # Adding your own commands
 
