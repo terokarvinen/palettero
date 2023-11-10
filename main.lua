@@ -36,16 +36,17 @@ end
 
 function commandBar(command)
 	-- open ctrl-E command bar, fill it with start of command, allow user to fill the rest
-	micro.InfoBar():Prompt("T> ", command, "Command", nil, promptDoneCallback)
+	micro.InfoBar():Prompt("> ", command, "Command", nil, promptDoneCallback)
 end
 
 function promptDoneCallback(resp, cancelled)
 	-- called by prompt() when user is done with ctrl-E command bar
 	if cancelled then
-		micro.InfoBar():Message("Command cancelled.")
+		micro.InfoBar():Message("")
+	else
+		micro.InfoBar():Message("✓ ", resp)
 	end
-	micro.InfoBar():Message("Running: ", resp)
-	
+
 	local bp = micro.CurPane()
 	bp:HandleCommand(resp)
 end
@@ -54,19 +55,17 @@ end
 
 function paletteroCommand(bp)
 	-- ctrl-E palettero
-	micro.InfoBar():Message("Palettero command palette activated!")
 
-	local showMenuCmd = string.format("bash -c \"cat '%s' '%s' '%s'|fzf --layout=reverse\"", userfile, menufile, collectedfile)
+	local showMenuCmd = string.format("bash -c \"cat '%s' '%s' '%s'| tr '#' '\t' | fzf --ansi -x -d '\t' --nth ..2 --with-nth 1 --layout=reverse --preview 'echo {2}' --preview-window=up:2:noborder:wrap --info=inline --margin=2,2 --padding=1 --no-multi --cycle --prompt='> ' --header='' \"", userfile, menufile, collectedfile)
 	micro.Log("Requesting user input with: ", showMenuCmd) -- run 'micro --debug tero' to create log.txt
 	local choice = shell.RunInteractiveShell(showMenuCmd, false, true)
 	micro.Log("User chose: ", choice)
 	local cmd = getCommand(choice)
 	micro.Log("Command: ", cmd)
 	if nil == cmd then
-		micro.InfoBar():Message("Empty choice, not running.")
 		return
 	end
-	micro.InfoBar():Message("Running: ", cmd)
+	micro.InfoBar():Message("✓ ", cmd)
 	-- bp:HandleCommand(cmd)
 	commandBar(cmd)
 end
