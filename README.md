@@ -39,9 +39,9 @@ Palettero command palette includes
 
 Requires fzf and bash, optionally pythonpy for extra features. 
 
-	$ sudo apt-get update
-	$ sudo apt-get -y install fzf
-	$ sudo apt-get -y install pythonpy # optional
+	sudo apt-get update
+	sudo apt-get -y install fzf
+	sudo apt-get -y install pythonpy # optional
 
 Only tested on Linux. 
 
@@ -49,12 +49,11 @@ Only tested on Linux.
 
 In the future, you will be able to install Palettero by 
 
-	$ micro --plugin install palettero
+	micro --plugin install palettero
 
 Currently, there is just development install
 
-	$ cd $HOME/.config/micro/plug/
-	$ git clone https://github.com/terokarvinen/palettero
+	git clone https://github.com/terokarvinen/palettero $HOME/.config/micro/plug/
 
 # Adding your own commands
 
