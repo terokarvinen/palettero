@@ -3,6 +3,7 @@
   "Description": "Command palette Ctrl-P - fuzzy search commands and textfilters",
   "Website": "https://terokarvinen.com/tags/micro-editor/",
   "Tags": ["command palette", "fzf", "menu"],
+  "License": "GNU General Public License v3",
   "Versions": [
     {
       "Version": "0.0.5",
